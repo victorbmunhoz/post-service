@@ -2,6 +2,8 @@
 
 Serviço de gerenciamento de posts para o sistema educacional. Parte do ecossistema de microsserviços para a plataforma educacional.
 
+> Nota: Este repositório utiliza a branch `main` como branch principal.
+
 ## Funcionalidades
 
 - CRUD completo para Posts
