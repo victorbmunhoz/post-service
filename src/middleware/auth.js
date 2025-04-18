@@ -31,21 +31,19 @@ const authenticate = async (req, res, next) => {
  * Middleware para verificar se o usuário tem um papel específico
  * @param {Array} roles - Papéis permitidos
  */
-const authorize = (roles = []) => {
-  return (req, res, next) => {
-    if (!req.user) {
-      return res.status(401).json({ message: 'Não autenticado' });
-    }
+const authorize = (roles = []) => (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({ message: 'Não autenticado' });
+  }
 
-    const userRole = req.user.role;
+  const userRole = req.user.role;
     
-    if (roles.length && !roles.includes(userRole)) {
-      logger.warn(`Acesso negado para usuário ${req.user.id} com papel ${userRole}`);
-      return res.status(403).json({ message: 'Acesso negado. Permissão insuficiente.' });
-    }
+  if (roles.length && !roles.includes(userRole)) {
+    logger.warn(`Acesso negado para usuário ${req.user.id} com papel ${userRole}`);
+    return res.status(403).json({ message: 'Acesso negado. Permissão insuficiente.' });
+  }
     
-    next();
-  };
+  next();
 };
 
 module.exports = {
