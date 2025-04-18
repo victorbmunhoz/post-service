@@ -53,7 +53,7 @@ const postSchema = new mongoose.Schema({
 });
 
 // Middleware para atualizar o updatedAt antes de salvar
-postSchema.pre('save', function(next) {
+postSchema.pre('save', function (next) {
   this.updatedAt = Date.now();
   next();
 });
